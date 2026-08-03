@@ -1,222 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>We'll Be Back Soon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotopy Digital</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
-    overflow:hidden;
-    position:relative;
-}
-
-body::before{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    background:#60a5fa;
-    filter:blur(180px);
-    top:-120px;
-    left:-100px;
-}
-
-body::after{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    background:#3b82f6;
-    filter:blur(180px);
-    bottom:-120px;
-    right:-100px;
-}
-
-.container{
-    width:90%;
-    max-width:700px;
-    padding:50px 35px;
-    text-align:center;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:25px;
-    color:#fff;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
-    animation:fadeUp 1s ease;
-}
-
-.logo{
-    width:90px;
-    height:90px;
-    margin:auto;
-    border-radius:50%;
-    background:#fff;
-    color:#2563eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:bold;
-    margin-bottom:25px;
-}
-
-h1{
-    font-size:48px;
-    font-weight:700;
-    line-height:1.2;
-}
-
-.highlight{
-    color:#93c5fd;
-}
-
-p{
-    margin-top:20px;
-    color:#dbeafe;
-    font-size:18px;
-    line-height:1.8;
-}
-
-.btn{
-    margin-top:35px;
-    display:inline-block;
-    text-decoration:none;
-    background:#fff;
-    color:#2563eb;
-    padding:15px 35px;
-    border-radius:50px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 12px 25px rgba(255,255,255,.25);
-}
-
-.loading{
-    margin-top:40px;
-    width:220px;
-    height:6px;
-    background:rgba(255,255,255,.15);
-    margin-inline:auto;
-    border-radius:50px;
-    overflow:hidden;
-}
-
-.loading span{
-    display:block;
-    width:40%;
-    height:100%;
-    background:#fff;
-    animation:loading 2s infinite;
-}
-
-.footer{
-    margin-top:30px;
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-@keyframes loading{
-    0%{transform:translateX(-100%);}
-    100%{transform:translateX(350%);}
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media(max-width:768px){
-
-h1{
-    font-size:34px;
-}
-
-p{
-    font-size:16px;
-}
-
-.container{
-    padding:40px 25px;
-}
-
-.logo{
-    width:75px;
-    height:75px;
-    font-size:34px;
-}
-}
-
-@media(max-width:480px){
-
-h1{
-    font-size:28px;
-}
-
-p{
-    font-size:15px;
-}
-
-.btn{
-    width:100%;
-}
-
-.loading{
-    width:180px;
-}
-}
-</style>
+    <!-- Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 <body>
 
-<div class="container">
+<nav class="navbar">
 
-    <div class="logo">⚡</div>
-
-    <h1>Our Website is <span class="highlight">Coming Back</span></h1>
-
-    <p>
-        We are making some exciting improvements.<br>
-        Thank you for your patience.<br><br>
-        <strong>🚀 We'll Come Back Soon!</strong>
-    </p>
-
-    <div class="loading">
-        <span></span>
+    <div class="logo">
+        <h2>LOTOPY</h2>
     </div>
 
-    <a href="/" class="btn">Refresh Page</a>
+    <ul class="nav-links">
 
-    <div class="footer">
-        © 2026 All Rights Reserved.
+        <li><a href="#">Home</a></li>
+
+        <li><a href="#">Services</a></li>
+
+        <li><a href="#">Portfolio</a></li>
+
+        <li><a href="#">About</a></li>
+
+        <li><a href="#">Contact</a></li>
+
+    </ul>
+
+    <a href="#" class="btn">
+        Book Free Consultation
+    </a>
+
+    <div class="menu-btn">
+        <i class="fa-solid fa-bars"></i>
     </div>
 
-</div>
+</nav>
+
+<script src="script.js"></script>
 
 </body>
 </html>
