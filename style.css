@@ -1,0 +1,136 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+.navbar{
+
+    width:100%;
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 8%;
+
+    background:#fff;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+
+    z-index:999;
+
+}
+
+.logo h2{
+
+    color:#0F172A;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:40px;
+
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#111827;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:#2563EB;
+
+}
+
+.btn{
+
+    text-decoration:none;
+
+    background:#F97316;
+
+    color:#fff;
+
+    padding:14px 28px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#EA580C;
+
+}
+
+.menu-btn{
+
+    display:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+/* Mobile */
+
+@media(max-width:991px){
+
+.nav-links{
+
+display:none;
+
+}
+
+.btn{
+
+display:none;
+
+}
+
+.menu-btn{
+
+display:block;
+
+}
+
+}
