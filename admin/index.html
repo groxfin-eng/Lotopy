@@ -1,248 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lotopy Admin</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
-
-body{
-
-background:linear-gradient(135deg,#eef2ff,#ffffff);
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-
-.login-box{
-
-width:100%;
-
-max-width:420px;
-
-background:#fff;
-
-padding:45px;
-
-border-radius:22px;
-
-box-shadow:0 20px 60px rgba(0,0,0,.08);
-
-text-align:center;
-
-}
-
-.logo{
-
-font-size:34px;
-
-font-weight:800;
-
-margin-bottom:15px;
-
-}
-
-.logo span{
-
-color:#4F46E5;
-
-}
-
-h3{
-
-font-weight:700;
-
-margin-bottom:10px;
-
-}
-
-p{
-
-color:#777;
-
-margin-bottom:30px;
-
-}
-
-.input-group{
-
-height:58px;
-
-background:#f4f5fb;
-
-border-radius:14px;
-
-overflow:hidden;
-
-margin-bottom:20px;
-
-}
-
-.input-group-text{
-
-background:none;
-
-border:none;
-
-padding-left:18px;
-
-}
-
-.form-control{
-
-border:none;
-
-background:none;
-
-box-shadow:none!important;
-
-}
-
-.btn-login{
-
-height:58px;
-
-background:#4F46E5;
-
-color:white;
-
-font-weight:600;
-
-border:none;
-
-border-radius:14px;
-
-width:100%;
-
-transition:.3s;
-
-}
-
-.btn-login:hover{
-
-background:#372dd8;
-
-}
-
-#error{
-
-margin-top:18px;
-
-font-weight:600;
-
-color:red;
-
-}
-
-@media(max-width:576px){
-
-.login-box{
-
-margin:20px;
-
-padding:30px 25px;
-
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="login-box">
-
-<div class="logo">
-
-Loto<span>py</span>
-
-</div>
-
-<h3>Admin Login</h3>
-
-<p>Enter your password</p>
-
-<div class="input-group">
-
-<span class="input-group-text">
-
-<i class="bi bi-lock-fill"></i>
-
-</span>
-
-<input
-type="password"
-id="password"
-class="form-control"
-placeholder="Password">
-
-</div>
-
-<button
-class="btn-login"
-onclick="login()">
-
-Login
-
-</button>
-
-<div id="error"></div>
-
-</div>
-
 <script>
 
-const PASSWORD="lotopy123";
+// Agar pehle se login hai to dashboard kholo
+
+if(sessionStorage.getItem("lotopyAdmin") === "true"){
+
+    window.location.href = "dashboard.html";
+
+}
+
+const PASSWORD = "lotopy123";
 
 function login(){
 
-let pass=document.getElementById("password").value;
+    let pass = document.getElementById("password").value.trim();
 
-if(pass===PASSWORD){
+    if(pass === PASSWORD){
 
-window.location.href="dashboard.html";
+        // Login Session Save
+        sessionStorage.setItem("lotopyAdmin","true");
 
-}else{
+        // Dashboard Open
+        window.location.href = "dashboard.html";
 
-document.getElementById("error").innerHTML="Wrong Password";
+    }else{
 
-}
+        document.getElementById("error").innerHTML = "Wrong Password";
 
-}
-
-document
-.getElementById("password")
-.addEventListener("keypress",function(e){
-
-if(e.key==="Enter"){
-
-login();
+    }
 
 }
+
+// Enter Key Support
+
+document.getElementById("password").addEventListener("keypress",function(e){
+
+    if(e.key === "Enter"){
+
+        login();
+
+    }
 
 });
 
 </script>
-
-</body>
-</html>
