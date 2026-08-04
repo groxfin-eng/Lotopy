@@ -569,5 +569,73 @@ Draft
 </div>
 
 </body>
+<script>
 
+/* ===========================
+LOTOPY DASHBOARD
+=========================== */
+
+// Check Login
+if (window.location.pathname.includes("dashboard.html")) {
+
+    const isLogin = sessionStorage.getItem("lotopyAdmin");
+
+    if (isLogin !== "true") {
+        window.location.href = "index.html";
+    }
+
+}
+
+// New Blog Button
+const newBlogBtn = document.querySelector(".new-btn");
+
+if (newBlogBtn) {
+
+    newBlogBtn.addEventListener("click", function () {
+
+        window.location.href = "editor.html";
+
+    });
+
+}
+
+// Sidebar Items
+const sidebarItems = document.querySelectorAll(".sidebar li");
+
+// New Blog
+if (sidebarItems.length > 1) {
+
+    sidebarItems[1].addEventListener("click", function () {
+
+        window.location.href = "editor.html";
+
+    });
+
+}
+
+// All Blogs
+if (sidebarItems.length > 2) {
+
+    sidebarItems[2].addEventListener("click", function () {
+
+        alert("All Blogs page coming soon.");
+
+    });
+
+}
+
+// Logout
+if (sidebarItems.length > 3) {
+
+    sidebarItems[3].addEventListener("click", function () {
+
+        sessionStorage.removeItem("lotopyAdmin");
+
+        window.location.href = "index.html";
+
+    });
+
+}
+
+</script>
 </html>
