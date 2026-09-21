@@ -1,683 +1,2108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Lotopy</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
 
-<title>Lotopy</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        body {
+            margin: 0;
+            background: #08090d;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+        /* ================================
+           NAVBAR
+        ================================= */
 
+        .lotopy-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 9999;
+
+            padding: 18px 0;
+        }
+
+
+        .lotopy-navbar {
+            width: min(1240px, 92%);
+            height: 64px;
+
+            margin: 0 auto;
+
+            padding: 0 8px 0 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border: 1px solid rgba(255,255,255,.13);
+            border-radius: 100px;
+
+            background: rgba(8,9,13,.75);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.15);
+        }
+
+
+        /* ================================
+           LOGO
+        ================================= */
+
+        .lotopy-logo {
+            color: #fff;
+
+            text-decoration: none;
+
+            font-size: 20px;
+            font-weight: 800;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* ================================
+           DESKTOP NAV
+        ================================= */
+
+        .lotopy-nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 2px;
+        }
+
+
+        .lotopy-nav-links a {
+            position: relative;
+
+            padding: 10px 13px;
+
+            color: rgba(255,255,255,.62);
+
+            text-decoration: none;
+
+            font-size: 11px;
+            font-weight: 500;
+
+            transition: color .25s ease;
+        }
+
+
+        .lotopy-nav-links a:hover,
+        .lotopy-nav-links a.active {
+            color: #fff;
+        }
+
+
+        .lotopy-nav-links a.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 3px;
+
+            width: 4px;
+            height: 4px;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            background: #817aff;
+        }
+
+
+        /* ================================
+           CTA
+        ================================= */
+
+        .lotopy-nav-cta {
+            min-width: 125px;
+            height: 46px;
+
+            padding: 0 17px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 18px;
+
+            border-radius: 100px;
+
+            background: #fff;
+            color: #08090d;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            transition:
+                background .25s ease,
+                color .25s ease;
+        }
+
+
+        .lotopy-nav-cta span {
+            font-size: 16px;
+
+            transition: transform .25s ease;
+        }
+
+
+        .lotopy-nav-cta:hover {
+            background: #635bff;
+            color: #fff;
+        }
+
+
+        .lotopy-nav-cta:hover span {
+            transform: translate(3px,-3px);
+        }
+
+
+        /* ================================
+           MOBILE BUTTON
+        ================================= */
+
+        .lotopy-menu-btn {
+            display: none;
+
+            width: 46px;
+            height: 46px;
+
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.05);
+
+            cursor: pointer;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .lotopy-menu-btn span {
+            display: block;
+
+            width: 17px;
+            height: 1px;
+
+            background: #fff;
+
+            transition:
+                transform .3s ease,
+                opacity .3s ease;
+        }
+
+
+        /* ================================
+           MOBILE MENU
+        ================================= */
+
+        .lotopy-mobile-menu {
+            display: none;
+
+            width: min(1240px,92%);
+
+            margin: 10px auto 0;
+
+            padding: 15px;
+
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 22px;
+
+            background: rgba(8,9,13,.97);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+
+        .lotopy-mobile-menu a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 16px 12px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.08);
+
+            color: rgba(255,255,255,.72);
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .lotopy-mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+
+        .lotopy-mobile-menu .mobile-contact {
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #635bff;
+
+            color: #fff;
+        }
+
+
+        /* ================================
+           MENU OPEN
+        ================================= */
+
+        .lotopy-header.menu-open
+        .lotopy-mobile-menu {
+            display: block;
+        }
+
+
+        .lotopy-header.menu-open
+        .lotopy-menu-btn span:first-child {
+            transform:
+                translateY(3.5px)
+                rotate(45deg);
+        }
+
+
+        .lotopy-header.menu-open
+        .lotopy-menu-btn span:last-child {
+            transform:
+                translateY(-3.5px)
+                rotate(-45deg);
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .lotopy-navbar {
+                height: 60px;
+
+                padding-left: 20px;
+                padding-right: 7px;
+            }
+
+
+            .lotopy-nav-links,
+            .lotopy-nav-cta {
+                display: none;
+            }
+
+
+            .lotopy-menu-btn {
+                display: flex;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .lotopy-header {
+                padding: 12px 0;
+            }
+
+
+            .lotopy-navbar {
+                width: 92%;
+            }
+
+
+            .lotopy-logo {
+                font-size: 18px;
+            }
+
+
+            .lotopy-mobile-menu {
+                width: 92%;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top">
 
-<div class="container">
+    <!-- =================================
+         LOTOPY NAVBAR
+    ================================= -->
 
-<a class="navbar-brand" href="#">
-Loto<span>py</span>
-</a>
+    <header class="lotopy-header">
 
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="offcanvas"
-data-bs-target="#mobileMenu">
+        <nav class="lotopy-navbar">
 
-<i class="bi bi-list"></i>
 
-</button>
+            <!-- LOGO -->
 
-<div class="collapse navbar-collapse">
+            <a href="#" class="lotopy-logo">
+                LOTOPY
+            </a>
 
-<ul class="navbar-nav mx-auto">
 
-<li class="nav-item">
-<a class="nav-link active" href="#">Home</a>
-</li>
+            <!-- DESKTOP NAVIGATION -->
 
-<li class="nav-item dropdown">
+            <div class="lotopy-nav-links">
 
-<a class="nav-link dropdown-toggle"
+                <a href="#index.html" class="active">
+                    Home
+                </a>
 
-href="#"
+                <a href="#about">
+                    About
+                </a>
 
-data-bs-toggle="dropdown">
+                <a href="#services">
+                    Services
+                </a>
 
-Services
+                <a href="#industries">
+                    Industries
+                </a>
 
-</a>
+                <a href="#global">
+                    Global Hiring
+                </a>
 
-<ul class="dropdown-menu">
-
-<li><a class="dropdown-item" href="#">Google Ads</a></li>
-
-<li><a class="dropdown-item" href="#">Meta Ads</a></li>
-
-<li><a class="dropdown-item" href="#">SEO</a></li>
-
-<li><a class="dropdown-item" href="#">Performance Marketing</a></li>
-
-<li><a class="dropdown-item" href="#">Landing Pages</a></li>
-
-<li><a class="dropdown-item" href="#">GA4 & GTM</a></li>
-
-<li><a class="dropdown-item" href="#">AI Automation</a></li>
-
-</ul>
-
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#">Case Studies</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#">Blog</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#">Contact</a>
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-<!-- Mobile Menu -->
-
-<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
-
-<div class="offcanvas-header">
-
-<h5 class="offcanvas-title">
-Loto<span>py</span>
-</h5>
-
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="offcanvas">
-</button>
-
-</div>
-
-<div class="offcanvas-body">
-
-<a href="#" class="mobile-link">Home</a>
-
-<div class="accordion accordion-flush" id="acc">
-
-<div class="accordion-item">
-
-<h2 class="accordion-header">
-
-<button
-class="accordion-button collapsed"
-data-bs-toggle="collapse"
-data-bs-target="#serviceMenu">
-
-Services
-
-</button>
-
-</h2>
-
-<div
-id="serviceMenu"
-class="accordion-collapse collapse"
-data-bs-parent="#acc">
-
-<div class="accordion-body p-0">
-
-<a href="#" class="mobile-link">Google Ads</a>
-<a href="#" class="mobile-link">Meta Ads</a>
-<a href="#" class="mobile-link">SEO</a>
-<a href="#" class="mobile-link">Performance Marketing</a>
-<a href="#" class="mobile-link">Landing Pages</a>
-<a href="#" class="mobile-link">GA4 & GTM</a>
-<a href="#" class="mobile-link">AI Automation</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<a href="#" class="mobile-link">Case Studies</a>
-<a href="#" class="mobile-link">Blog</a>
-<a href="#" class="mobile-link">Contact</a>
-
-</div>
-
-</div>
-  <!-- ===========================
-Hero Section
-=========================== -->
-
-<section class="hero">
-
-    <div class="hero-circle hero-circle-1"></div>
-    <div class="hero-circle hero-circle-2"></div>
-
-    <div class="container">
-
-        <div class="row align-items-center">
-
-            <!-- LEFT -->
-
-            <div class="col-lg-6">
-
-                <span class="hero-tag">
-
-                    🚀 Performance Marketing Agency
-
-                </span>
-
-                <h1>
-
-                    Scale Your Business
-
-                    <span>With Lotopy</span>
-
-                </h1>
-
-                <p>
-
-                    We help businesses generate quality leads, increase
-                    conversions and grow revenue through Google Ads,
-                    Meta Ads, SEO and AI Automation.
-
-                </p>
-
-                <div class="hero-btns">
-
-                    <a href="#" class="btn hero-btn">
-
-                        Get Started
-
-                    </a>
-
-                    <a href="#" class="hero-link">
-
-                        View Services →
-
-                    </a>
-
-                </div>
-
-                <div class="hero-clients">
-
-                    <div class="client">
-
-                        <i class="bi bi-google"></i>
-
-                    </div>
-
-                    <div class="client">
-
-                        <i class="bi bi-meta"></i>
-
-                    </div>
-
-                    <div class="client">
-
-                        <i class="bi bi-bar-chart"></i>
-
-                    </div>
-
-                    <div class="client">
-
-                        <i class="bi bi-search"></i>
-
-                    </div>
-
-                </div>
+                <a href="#process">
+                    Careers
+                </a>
 
             </div>
 
-            <!-- RIGHT -->
 
-            <div class="col-lg-6">
+            <!-- CTA -->
 
-                <div class="hero-image">
+            <a href="#contact" class="lotopy-nav-cta">
 
-                    <div class="dashboard-card">
+                Hire Talent
 
-                        <div class="income">
+                <span>↗</span>
 
-                            <small>Total Revenue</small>
+            </a>
 
-                            <h2>$84,500</h2>
 
-                            <span>+24.8%</span>
+            <!-- MOBILE BUTTON -->
 
-                        </div>
+            <button
+                class="lotopy-menu-btn"
+                type="button"
+                aria-label="Open menu"
+            >
 
-                        <div class="chart"></div>
+                <span></span>
+                <span></span>
 
-                    </div>
+            </button>
 
-                    <div class="floating-card one">
 
-                        <h5>Google Ads</h5>
+        </nav>
 
-                        <strong>+185%</strong>
 
-                    </div>
+        <!-- MOBILE MENU -->
 
-                    <div class="floating-card two">
+        <div class="lotopy-mobile-menu">
 
-                        <h5>Meta Ads</h5>
+            <a href="index.html">
+                Home
+            </a>
 
-                        <strong>12.8X ROAS</strong>
+            <a href="#about">
+                About
+            </a>
 
-                    </div>
+            <a href="#services">
+                Services
+            </a>
 
-                </div>
+            <a href="#industries">
+                Industries
+            </a>
 
-            </div>
+            <a href="#global">
+                Global Hiring
+            </a>
+
+            <a href="#process">
+                Careers
+            </a>
+
+            <a href="#contact" class="mobile-contact">
+                Hire Talent
+                <span>↗</span>
+            </a>
 
         </div>
 
-    </div>
+    </header>
+    <section class="lotopy-hero" id="home">
 
-</section>
-  <!-- ===========================
-SERVICES SECTION
-=========================== -->
+    <!-- Background -->
+    <div class="hero-grid"></div>
 
-<section class="services">
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
 
-<div class="container">
 
-<div class="section-title">
+    <div class="hero-container">
 
-<span>OUR SERVICES</span>
+        <!-- Left Content -->
+        <div class="hero-content">
 
-<h2>
+            <div class="hero-eyebrow">
+                <span class="eyebrow-dot"></span>
+                GLOBAL TALENT & RECRUITMENT
+            </div>
 
-Everything You Need To
 
-Grow Online
+            <h1>
+                The right people
+                <span>move business forward.</span>
+            </h1>
 
-</h2>
 
-<p>
-
-From paid advertising to SEO, we build marketing systems that generate
-consistent leads and measurable business growth.
-
-</p>
-
-</div>
-
-<div class="row g-4">
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-google"></i>
-
-</div>
-
-<h4>Google Ads</h4>
-
-<p>
-
-High-converting Search, Display, Shopping &
-Performance Max campaigns.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-facebook"></i>
-
-</div>
-
-<h4>Meta Ads</h4>
-
-<p>
-
-Generate leads and sales through Facebook &
-Instagram advertising.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-search"></i>
-
-</div>
-
-<h4>SEO</h4>
-
-<p>
-
-Rank your website higher on Google and drive
-organic traffic.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-bar-chart"></i>
-
-</div>
-
-<h4>Analytics</h4>
-
-<p>
-
-Complete GA4, GTM and Conversion Tracking
-implementation.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-lightning-charge"></i>
-
-</div>
-
-<h4>Automation</h4>
-
-<p>
-
-Automate lead collection, CRM and WhatsApp
-marketing.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-<div class="col-lg-4 col-md-6">
-
-<div class="service-card">
-
-<div class="icon">
-
-<i class="bi bi-graph-up-arrow"></i>
-
-</div>
-
-<h4>Growth Strategy</h4>
-
-<p>
-
-Complete funnel planning and scaling strategy for
-businesses.
-
-</p>
-
-<a href="#">
-
-Learn More →
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-  <!-- ===========================
-WHY CHOOSE LOTOPY
-=========================== -->
-
-<section class="why-lotopy">
-
-<div class="container">
-
-<div class="row align-items-center g-5">
-
-<div class="col-lg-6">
-
-<div class="why-image">
-
-<div class="experience-card">
-
-<h2>4+</h2>
-
-<p>Years Experience</p>
-
-</div>
-
-<div class="image-placeholder">
-
-<i class="bi bi-graph-up-arrow"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-lg-6">
-
-<span class="section-tag">
-
-WHY LOTOPY
-
-</span>
-
-<h2>
-
-Marketing That
-Actually Brings Results
-
-</h2>
-
-<p class="why-text">
-
-We don't just run ads. We build complete growth systems
-that help businesses generate leads, increase sales and
-maximize ROI.
-
-</p>
-
-<div class="feature-box">
-
-<div class="feature-icon">
-
-<i class="bi bi-check2-circle"></i>
-
-</div>
-
-<div>
-
-<h5>Data Driven Strategy</h5>
-
-<p>Every campaign is optimized using real analytics.</p>
-
-</div>
-
-</div>
-
-<div class="feature-box">
-
-<div class="feature-icon">
-
-<i class="bi bi-lightning-charge-fill"></i>
-
-</div>
-
-<div>
-
-<h5>Fast Scaling</h5>
-
-<p>Scale winning campaigns with advanced optimization.</p>
-
-</div>
-
-</div>
-
-<div class="feature-box">
-
-<div class="feature-icon">
-
-<i class="bi bi-shield-check"></i>
-
-</div>
-
-<div>
-
-<h5>Transparent Reporting</h5>
-
-<p>Weekly reports with complete performance tracking.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-  <!-- ===========================
-LATEST BLOGS
-=========================== -->
-
-<section class="blog-section">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>LATEST BLOGS</span>
-
-            <h2>Latest Marketing Insights</h2>
-
-            <p>
-                Read the latest articles on Google Ads, SEO,
-                Meta Ads and Digital Marketing.
+            <p class="hero-description">
+                Lotopy connects ambitious businesses with exceptional
+                talent across markets. From specialist hiring to
+                scalable workforce solutions, we help you build teams
+                that are ready for what's next.
             </p>
 
+
+            <div class="hero-buttons">
+
+                <a href="#contact" class="hero-primary-btn">
+                    Hire Talent
+                    <span>↗</span>
+                </a>
+
+                <a href="#services" class="hero-secondary-btn">
+                    Explore Services
+                    <span>↓</span>
+                </a>
+
+            </div>
+
+
+            <div class="hero-trust">
+
+                <div class="hero-avatars">
+
+                    <span>TK</span>
+                    <span>AM</span>
+                    <span>RS</span>
+                    <span>+</span>
+
+                </div>
+
+                <div class="hero-trust-text">
+                    <strong>Built around people</strong>
+                    <small>Talent · Teams · Growth</small>
+                </div>
+
+            </div>
+
         </div>
 
-        <div id="latestBlogs" class="row g-4">
 
-            <!-- JavaScript yahan blog cards add karega -->
+        <!-- Right Visual -->
+        <div class="hero-visual">
 
+            <div class="visual-orbit orbit-1"></div>
+            <div class="visual-orbit orbit-2"></div>
+            <div class="visual-orbit orbit-3"></div>
+
+
+            <!-- Connection Lines -->
+            <div class="connection connection-1"></div>
+            <div class="connection connection-2"></div>
+            <div class="connection connection-3"></div>
+            <div class="connection connection-4"></div>
+
+
+            <!-- Center -->
+            <div class="hero-center">
+
+                <div class="hero-center-inner">
+                    <strong>LOTOPY</strong>
+                    <span>TALENT NETWORK</span>
+                </div>
+
+            </div>
+
+
+            <!-- Talent Cards -->
+
+            <div class="talent-card talent-card-one">
+
+                <div class="talent-avatar">
+                    A
+                </div>
+
+                <div class="talent-info">
+                    <strong>Product</strong>
+                    <span>Technology</span>
+                </div>
+
+                <b>96%</b>
+
+            </div>
+
+
+            <div class="talent-card talent-card-two">
+
+                <div class="talent-avatar avatar-two">
+                    R
+                </div>
+
+                <div class="talent-info">
+                    <strong>Finance</strong>
+                    <span>Professional</span>
+                </div>
+
+                <b>92%</b>
+
+            </div>
+
+
+            <div class="talent-card talent-card-three">
+
+                <div class="talent-avatar avatar-three">
+                    M
+                </div>
+
+                <div class="talent-info">
+                    <strong>Engineering</strong>
+                    <span>Specialist</span>
+                </div>
+
+                <b>89%</b>
+
+            </div>
+
+
+            <!-- Location Nodes -->
+
+            <div class="location-node location-one">
+                <i></i>
+                USA
+            </div>
+
+            <div class="location-node location-two">
+                <i></i>
+                UK
+            </div>
+
+            <div class="location-node location-three">
+                <i></i>
+                INDIA
+            </div>
+
+            <div class="location-node location-four">
+                <i></i>
+                EUROPE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bottom Stats -->
+
+    <div class="hero-bottom">
+
+        <div class="hero-stat">
+            <strong>GLOBAL</strong>
+            <span>Talent Access</span>
+        </div>
+
+        <div class="hero-divider"></div>
+
+        <div class="hero-stat">
+            <strong>FLEXIBLE</strong>
+            <span>Hiring Models</span>
+        </div>
+
+        <div class="hero-divider"></div>
+
+        <div class="hero-stat">
+            <strong>HUMAN</strong>
+            <span>First Approach</span>
+        </div>
+
+        <div class="hero-divider"></div>
+
+        <div class="hero-stat">
+            <strong>BUILT</strong>
+            <span>For Growth</span>
         </div>
 
     </div>
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ----------------------- -->
+<!-- =========================
+     LOTOPY — ABOUT SECTION
+========================= -->
 
-<script>
+<section class="lotopy-about" id="about">
 
-window.addEventListener("scroll",function(){
+  <div class="about-container">
 
-const nav=document.querySelector(".navbar");
+    <!-- Top Label -->
+    <div class="about-top">
+      <span class="about-label">
+        <span class="about-dot"></span>
+        ABOUT LOTOPY
+      </span>
 
-if(window.scrollY>40){
+      <span class="about-index">01 / 06</span>
+    </div>
 
-nav.classList.add("scrolled");
 
-}else{
+    <!-- Main Content -->
+    <div class="about-main">
 
-nav.classList.remove("scrolled");
+      <!-- Left Heading -->
+      <div class="about-heading-wrap">
+        <h2>
+          People are the
+          <span>real advantage.</span>
+        </h2>
+      </div>
 
-}
 
-});
+      <!-- Right Content -->
+      <div class="about-content">
 
-</script>
+        <p class="about-lead">
+          Lotopy helps businesses find, attract and build exceptional
+          teams across borders.
+        </p>
+
+        <p class="about-text">
+          We combine recruitment expertise, market knowledge and a
+          human-first approach to connect companies with the right
+          people. Whether you are building your first team or scaling
+          an established workforce, we make hiring simpler, faster
+          and more focused.
+        </p>
+
+        <a href="#services" class="about-link">
+          Discover what we do
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom Visual -->
+    <div class="about-visual">
+
+      <div class="about-line"></div>
+
+      <div class="about-points">
+
+        <div class="about-point">
+          <span class="point-number">01</span>
+          <div>
+            <strong>Human First</strong>
+            <p>People behind every placement.</p>
+          </div>
+        </div>
+
+        <div class="about-point">
+          <span class="point-number">02</span>
+          <div>
+            <strong>Global Reach</strong>
+            <p>Talent without geographical limits.</p>
+          </div>
+        </div>
+
+        <div class="about-point">
+          <span class="point-number">03</span>
+          <div>
+            <strong>Built To Scale</strong>
+            <p>Flexible hiring for growing teams.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — SERVICES SECTION
+========================= -->
+
+<section class="lotopy-services" id="services">
+
+  <div class="services-container">
+
+    <!-- Header -->
+    <div class="services-header">
+
+      <div class="services-label">
+        <span></span>
+        WHAT WE DO
+      </div>
+
+      <div class="services-number">02 / 06</div>
+
+    </div>
+
+
+    <!-- Intro -->
+    <div class="services-intro">
+
+      <h2>
+        Hiring built around
+        <em>your business.</em>
+      </h2>
+
+      <p>
+        From finding one critical hire to building entire teams,
+        Lotopy provides flexible talent solutions designed around
+        your goals, timelines and growth.
+      </p>
+
+    </div>
+
+
+    <!-- Services List -->
+    <div class="services-list">
+
+      <!-- Service 01 -->
+      <div class="service-item">
+
+        <div class="service-left">
+          <span class="service-no">01</span>
+
+          <div class="service-icon">↗</div>
+        </div>
+
+        <div class="service-content">
+          <h3>Permanent Recruitment</h3>
+
+          <p>
+            Find qualified professionals who match your
+            business needs, culture and long-term goals.
+          </p>
+        </div>
+
+        <div class="service-arrow">↗</div>
+
+      </div>
+
+
+      <!-- Service 02 -->
+      <div class="service-item">
+
+        <div class="service-left">
+          <span class="service-no">02</span>
+
+          <div class="service-icon">+</div>
+        </div>
+
+        <div class="service-content">
+          <h3>Contract & Temporary Staffing</h3>
+
+          <p>
+            Scale your workforce quickly with flexible
+            staffing solutions for changing business needs.
+          </p>
+        </div>
+
+        <div class="service-arrow">↗</div>
+
+      </div>
+
+
+      <!-- Service 03 -->
+      <div class="service-item">
+
+        <div class="service-left">
+          <span class="service-no">03</span>
+
+          <div class="service-icon">◎</div>
+        </div>
+
+        <div class="service-content">
+          <h3>Executive Search</h3>
+
+          <p>
+            Connect with experienced leaders and specialist
+            professionals for high-impact positions.
+          </p>
+        </div>
+
+        <div class="service-arrow">↗</div>
+
+      </div>
+
+
+      <!-- Service 04 -->
+      <div class="service-item">
+
+        <div class="service-left">
+          <span class="service-no">04</span>
+
+          <div class="service-icon">⌁</div>
+        </div>
+
+        <div class="service-content">
+          <h3>Global Talent Solutions</h3>
+
+          <p>
+            Access talent across markets and build distributed
+            teams without limiting your search to one location.
+          </p>
+        </div>
+
+        <div class="service-arrow">↗</div>
+
+      </div>
+
+
+      <!-- Service 05 -->
+      <div class="service-item">
+
+        <div class="service-left">
+          <span class="service-no">05</span>
+
+          <div class="service-icon">□</div>
+        </div>
+
+        <div class="service-content">
+          <h3>Workforce Solutions</h3>
+
+          <p>
+            Build scalable workforce strategies that support
+            expansion, new projects and evolving business demands.
+          </p>
+        </div>
+
+        <div class="service-arrow">↗</div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom CTA -->
+    <div class="services-bottom">
+
+      <span>
+        Need a specific talent solution?
+      </span>
+
+      <a href="#contact">
+        Talk to our team
+        <b>↗</b>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="lotopy-industries" id="industries">
+
+  <div class="industries-container">
+
+    <div class="industries-header">
+      <div class="industries-label">
+        <span></span>
+        INDUSTRIES WE SERVE
+      </div>
+
+      <div class="industries-number">03 / 06</div>
+    </div>
+
+    <div class="industries-intro">
+
+      <h2>
+        Talent for
+        <span>every ambition.</span>
+      </h2>
+
+      <p>
+        From fast-growing startups to established enterprises,
+        we connect businesses with professionals across
+        high-demand industries and specialist functions.
+      </p>
+
+    </div>
+
+
+    <div class="industries-grid">
+
+      <div class="industry-card industry-large">
+        <span class="industry-number">01</span>
+        <div class="industry-symbol">⌘</div>
+        <h3>Technology</h3>
+        <p>
+          Software, IT, product and digital professionals
+          for technology-driven businesses.
+        </p>
+        <a href="#contact">Explore talent <span>↗</span></a>
+      </div>
+
+
+      <div class="industry-card">
+        <span class="industry-number">02</span>
+        <div class="industry-symbol">◫</div>
+        <h3>Finance</h3>
+        <p>
+          Skilled professionals across finance,
+          accounting, banking and fintech.
+        </p>
+        <a href="#contact">Explore talent <span>↗</span></a>
+      </div>
+
+
+      <div class="industry-card">
+        <span class="industry-number">03</span>
+        <div class="industry-symbol">◇</div>
+        <h3>Healthcare</h3>
+        <p>
+          Talent supporting healthcare, medical and
+          life-science organizations.
+        </p>
+        <a href="#contact">Explore talent <span>↗</span></a>
+      </div>
+
+
+      <div class="industry-card">
+        <span class="industry-number">04</span>
+        <div class="industry-symbol">△</div>
+        <h3>Engineering</h3>
+        <p>
+          Technical specialists and engineers for
+          complex projects and growing teams.
+        </p>
+        <a href="#contact">Explore talent <span>↗</span></a>
+      </div>
+
+
+      <div class="industry-card industry-wide">
+        <span class="industry-number">05</span>
+
+        <div class="industry-wide-content">
+          <div>
+            <div class="industry-symbol">✦</div>
+            <h3>Professional Services</h3>
+          </div>
+
+          <p>
+            Recruitment solutions for consulting, operations,
+            sales, marketing, customer success and other
+            business-critical functions.
+          </p>
+        </div>
+
+        <a href="#contact">Explore talent <span>↗</span></a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — GLOBAL HIRING
+========================= -->
+
+<section class="lotopy-global" id="global">
+
+  <div class="global-container">
+
+    <!-- Header -->
+    <div class="global-header">
+
+      <div class="global-label">
+        <span></span>
+        GLOBAL HIRING
+      </div>
+
+      <div class="global-number">04 / 06</div>
+
+    </div>
+
+
+    <!-- Main -->
+    <div class="global-main">
+
+      <!-- Left -->
+      <div class="global-copy">
+
+        <h2>
+          Great talent
+          <span>has no borders.</span>
+        </h2>
+
+        <p class="global-lead">
+          Build teams wherever the right people are.
+        </p>
+
+        <p class="global-text">
+          Lotopy helps businesses discover and connect with
+          talent across international markets. We make global
+          hiring more accessible while keeping the process
+          focused, transparent and human.
+        </p>
+
+        <a href="#contact" class="global-cta">
+          Build your global team
+          <span>↗</span>
+        </a>
+
+      </div>
+
+
+      <!-- Right — Global Network -->
+      <div class="global-map">
+
+        <div class="map-grid"></div>
+
+        <div class="map-glow map-glow-one"></div>
+        <div class="map-glow map-glow-two"></div>
+
+
+        <!-- Connection Lines -->
+        <div class="map-line line-one"></div>
+        <div class="map-line line-two"></div>
+        <div class="map-line line-three"></div>
+        <div class="map-line line-four"></div>
+
+
+        <!-- Locations -->
+
+        <div class="location location-usa">
+          <span class="location-dot"></span>
+          <div>
+            <strong>USA</strong>
+            <small>North America</small>
+          </div>
+        </div>
+
+
+        <div class="location location-uk">
+          <span class="location-dot"></span>
+          <div>
+            <strong>UK</strong>
+            <small>Europe</small>
+          </div>
+        </div>
+
+
+        <div class="location location-india">
+          <span class="location-dot"></span>
+          <div>
+            <strong>INDIA</strong>
+            <small>South Asia</small>
+          </div>
+        </div>
+
+
+        <div class="location location-europe">
+          <span class="location-dot"></span>
+          <div>
+            <strong>EUROPE</strong>
+            <small>European Union</small>
+          </div>
+        </div>
+
+
+        <!-- Center -->
+        <div class="global-center">
+
+          <div class="center-ring ring-one"></div>
+          <div class="center-ring ring-two"></div>
+
+          <div class="center-core">
+            <span>LOTOPY</span>
+            <small>TALENT NETWORK</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom Stats -->
+
+    
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — HOW WE WORK
+========================= -->
+
+<section class="lotopy-process" id="process">
+
+  <div class="process-container">
+
+    <!-- Header -->
+    <div class="process-header">
+
+      <div class="process-label">
+        <span></span>
+        HOW WE WORK
+      </div>
+
+      <div class="process-number">05 / 06</div>
+
+    </div>
+
+
+    <!-- Intro -->
+    <div class="process-intro">
+
+      <h2>
+        Simple process.
+        <span>Better hiring.</span>
+      </h2>
+
+      <p>
+        We keep recruitment straightforward, transparent and
+        focused on finding the right fit for both businesses
+        and candidates.
+      </p>
+
+    </div>
+
+
+    <!-- Process -->
+    <div class="process-list">
+
+      <!-- 01 -->
+      <div class="process-step">
+
+        <div class="process-step-number">
+          01
+        </div>
+
+        <div class="process-step-title">
+          <h3>Understand</h3>
+          <span>01</span>
+        </div>
+
+        <div class="process-step-content">
+          <p>
+            We understand your business, team structure,
+            hiring goals, role requirements and timelines.
+          </p>
+        </div>
+
+        <div class="process-step-icon">
+          ↗
+        </div>
+
+      </div>
+
+
+      <!-- 02 -->
+      <div class="process-step">
+
+        <div class="process-step-number">
+          02
+        </div>
+
+        <div class="process-step-title">
+          <h3>Source</h3>
+          <span>02</span>
+        </div>
+
+        <div class="process-step-content">
+          <p>
+            Our team searches across relevant talent pools
+            to identify professionals aligned with the role.
+          </p>
+        </div>
+
+        <div class="process-step-icon">
+          ↗
+        </div>
+
+      </div>
+
+
+      <!-- 03 -->
+      <div class="process-step">
+
+        <div class="process-step-number">
+          03
+        </div>
+
+        <div class="process-step-title">
+          <h3>Connect</h3>
+          <span>03</span>
+        </div>
+
+        <div class="process-step-content">
+          <p>
+            We connect you with suitable candidates and
+            support communication throughout the process.
+          </p>
+        </div>
+
+        <div class="process-step-icon">
+          ↗
+        </div>
+
+      </div>
+
+
+      <!-- 04 -->
+      <div class="process-step">
+
+        <div class="process-step-number">
+          04
+        </div>
+
+        <div class="process-step-title">
+          <h3>Match</h3>
+          <span>04</span>
+        </div>
+
+        <div class="process-step-content">
+          <p>
+            We focus on skills, experience, expectations
+            and culture to create stronger long-term matches.
+          </p>
+        </div>
+
+        <div class="process-step-icon">
+          ↗
+        </div>
+
+      </div>
+
+
+      <!-- 05 -->
+      <div class="process-step">
+
+        <div class="process-step-number">
+          05
+        </div>
+
+        <div class="process-step-title">
+          <h3>Grow</h3>
+          <span>05</span>
+        </div>
+
+        <div class="process-step-content">
+          <p>
+            Our relationship continues beyond the placement
+            as your team and hiring needs evolve.
+          </p>
+        </div>
+
+        <div class="process-step-icon">
+          ↗
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom -->
+    <div class="process-bottom">
+
+      <span>
+        From first conversation to final placement.
+      </span>
+
+      <strong>
+        People. Process. Progress.
+      </strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — WHY LOTOPY
+========================= -->
+
+<section class="lotopy-why" id="why-lotopy">
+
+  <div class="why-container">
+
+    <!-- Header -->
+    <div class="why-header">
+
+      <div class="why-label">
+        <span></span>
+        WHY LOTOPY
+      </div>
+
+      <div class="why-number">06 / 06</div>
+
+    </div>
+
+
+    <!-- Main Heading -->
+    <div class="why-intro">
+
+      <h2>
+        More than hiring.
+        <span>A long-term advantage.</span>
+      </h2>
+
+      <p>
+        The right recruitment partner should understand more than
+        the vacancy. We focus on your people, your business and
+        where you want to go next.
+      </p>
+
+    </div>
+
+
+    <!-- Feature Layout -->
+    <div class="why-layout">
+
+      <!-- Main Feature -->
+      <div class="why-feature">
+
+        <div class="why-feature-top">
+          <span>01</span>
+          <div class="why-feature-icon">✦</div>
+        </div>
+
+        <div class="why-feature-content">
+
+          <h3>
+            Human-first
+            <br>
+            recruitment.
+          </h3>
+
+          <p>
+            We believe successful hiring starts with understanding
+            people. Our approach keeps communication personal,
+            transparent and focused on genuine fit.
+          </p>
+
+        </div>
+
+        <div class="why-feature-line"></div>
+
+      </div>
+
+
+      <!-- Side Features -->
+      <div class="why-side">
+
+
+        <!-- Feature 02 -->
+        <div class="why-item">
+
+          <div class="why-item-number">02</div>
+
+          <div class="why-item-content">
+
+            <div class="why-item-icon">◎</div>
+
+            <div>
+              <h3>Quality focused</h3>
+
+              <p>
+                We focus on relevant talent rather than
+                simply increasing the number of profiles.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Feature 03 -->
+        <div class="why-item">
+
+          <div class="why-item-number">03</div>
+
+          <div class="why-item-content">
+
+            <div class="why-item-icon">↗</div>
+
+            <div>
+              <h3>Built for growth</h3>
+
+              <p>
+                Flexible hiring support that can evolve
+                as your business and workforce expand.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Feature 04 -->
+        <div class="why-item">
+
+          <div class="why-item-number">04</div>
+
+          <div class="why-item-content">
+
+            <div class="why-item-icon">∞</div>
+
+            <div>
+              <h3>Global perspective</h3>
+
+              <p>
+                Access wider talent pools while maintaining
+                a clear understanding of local markets.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Feature 05 -->
+        <div class="why-item">
+
+          <div class="why-item-number">05</div>
+
+          <div class="why-item-content">
+
+            <div class="why-item-icon">+</div>
+
+            <div>
+              <h3>Partnership mindset</h3>
+
+              <p>
+                We work alongside your team rather than
+                treating recruitment as a one-time transaction.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom Statement -->
+    <div class="why-bottom">
+
+      <div class="why-bottom-line"></div>
+
+      <div class="why-bottom-content">
+
+        <span>LOTOPY</span>
+
+        <p>
+          People first. Businesses forward.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — CAREERS
+========================= -->
+
+<section class="lotopy-careers" id="careers">
+
+  <div class="careers-container">
+
+    <!-- Header -->
+    <div class="careers-header">
+
+      <div class="careers-label">
+        <span></span>
+        JOIN LOTOPY
+      </div>
+
+      <div class="careers-number">07 / 08</div>
+
+    </div>
+
+
+    <!-- Main -->
+    <div class="careers-main">
+
+      <div class="careers-heading">
+
+        <div class="careers-eyebrow">
+          FOR PEOPLE READY FOR MORE
+        </div>
+
+        <h2>
+          Find work that
+          <span>moves you forward.</span>
+        </h2>
+
+      </div>
+
+
+      <div class="careers-copy">
+
+        <p class="careers-lead">
+          Your next opportunity could be closer than you think.
+        </p>
+
+        <p class="careers-text">
+          Lotopy connects ambitious professionals with companies
+          looking for people who can make a real impact. Tell us
+          what you do, where you want to go and what you are
+          looking for next.
+        </p>
+
+        <a href="#contact" class="careers-cta">
+          Explore opportunities
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Career Visual -->
+    <div class="careers-visual">
+
+      <div class="career-orbit orbit-one"></div>
+      <div class="career-orbit orbit-two"></div>
+      <div class="career-orbit orbit-three"></div>
+
+      <div class="career-center">
+        <span>LOTOPY</span>
+        <small>YOUR NEXT MOVE</small>
+      </div>
+
+
+      <div class="career-node node-one">
+        <span></span>
+        <div>
+          <strong>Technology</strong>
+          <small>Opportunities</small>
+        </div>
+      </div>
+
+      <div class="career-node node-two">
+        <span></span>
+        <div>
+          <strong>Finance</strong>
+          <small>Opportunities</small>
+        </div>
+      </div>
+
+      <div class="career-node node-three">
+        <span></span>
+        <div>
+          <strong>Engineering</strong>
+          <small>Opportunities</small>
+        </div>
+      </div>
+
+      <div class="career-node node-four">
+        <span></span>
+        <div>
+          <strong>Professional</strong>
+          <small>Opportunities</small>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Bottom -->
+    <div class="careers-bottom">
+
+      <div class="careers-bottom-item">
+        <strong>01</strong>
+        <span>Discover opportunities</span>
+      </div>
+
+      <div class="careers-bottom-item">
+        <strong>02</strong>
+        <span>Connect with employers</span>
+      </div>
+
+      <div class="careers-bottom-item">
+        <strong>03</strong>
+        <span>Take your next step</span>
+      </div>
+
+      <a href="#contact">
+        Submit your profile
+        <span>↗</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — CONTACT
+========================= -->
+
+<section class="lotopy-contact" id="contact">
+
+  <div class="contact-container">
+
+    <div class="contact-header">
+
+      <div class="contact-label">
+        <span></span>
+        LET'S WORK TOGETHER
+      </div>
+
+      <div class="contact-number">08 / 08</div>
+
+    </div>
+
+
+    <div class="contact-main">
+
+      <div class="contact-heading">
+
+        <div class="contact-eyebrow">
+          HAVE A ROLE TO FILL?
+        </div>
+
+        <h2>
+          Let's build your
+          <span>next great team.</span>
+        </h2>
+
+      </div>
+
+
+      <div class="contact-copy">
+
+        <p>
+          Tell us what you are looking for and our team
+          will help you find the right talent.
+        </p>
+
+        <a href="mailto:hello@lotopy.com" class="contact-email">
+          hello@lotopy.com
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Contact Form -->
+
+    <div class="contact-form-wrap">
+
+      <form class="lotopy-form">
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="John Smith"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Your company"
+            >
+          </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="email">Work email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@company.com"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+91 00000 00000"
+            >
+          </div>
+
+        </div>
+
+
+        <div class="form-group full-width">
+
+          <label for="service">What do you need?</label>
+
+          <select id="service" name="service">
+
+            <option value="" selected disabled>
+              Select a service
+            </option>
+
+            <option value="permanent">
+              Permanent Recruitment
+            </option>
+
+            <option value="contract">
+              Contract & Temporary Staffing
+            </option>
+
+            <option value="executive">
+              Executive Search
+            </option>
+
+            <option value="global">
+              Global Talent Solutions
+            </option>
+
+            <option value="workforce">
+              Workforce Solutions
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group full-width">
+
+          <label for="message">Tell us about your requirement</label>
+
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Tell us about the role, team or hiring requirement..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-bottom">
+
+          <p>
+            By submitting this form, you agree to be contacted
+            by the Lotopy team regarding your enquiry.
+          </p>
+
+          <button type="submit">
+            Send enquiry
+            <span>↗</span>
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LOTOPY — FOOTER
+========================= -->
+
+<footer class="lotopy-footer">
+
+  <div class="footer-container">
+
+    <!-- TOP CTA -->
+    <div class="footer-cta">
+
+      <div class="footer-cta-text">
+        <span>READY TO BUILD YOUR TEAM?</span>
+
+        <h2>
+          Let's make
+          <em>something great.</em>
+        </h2>
+      </div>
+
+      <a href="#contact" class="footer-cta-button">
+        Hire Talent
+        <span>↗</span>
+      </a>
+
+    </div>
+
+
+    <!-- DIVIDER -->
+    <div class="footer-divider"></div>
+
+
+    <!-- MAIN FOOTER -->
+    <div class="footer-main">
+
+
+      <!-- BRAND -->
+      <div class="footer-brand">
+
+        <a href="#home" class="footer-logo">
+          LOTOPY<span>.</span>
+        </a>
+
+        <p>
+          Connecting ambitious businesses with
+          exceptional talent across markets.
+        </p>
+
+
+        <!-- SOCIAL ICONS -->
+        <div class="footer-social">
+
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.5 8.2H3.2V21h3.3V8.2ZM4.85 3A2 2 0 1 0 4.85 7 2 2 0 0 0 4.85 3ZM21 13.65c0-3.85-2.05-5.65-4.78-5.65-2.2 0-3.18 1.2-3.73 2.05V8.2H9.2V21h3.29v-6.33c0-1.67.32-3.28 2.38-3.28 2.03 0 2.05 1.9 2.05 3.39V21H21v-7.35Z"/>
+            </svg>
+          </a>
+
+
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.7" r="1"></circle>
+            </svg>
+          </a>
+
+
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.5l.5-4H13V9c0-.7.3-1 1-1Z"/>
+            </svg>
+          </a>
+
+
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24">
+              <path d="M18.9 3H22l-6.77 7.74L23.2 21h-6.24l-4.89-6.39L6.48 21H3.37l7.24-8.28L3 3h6.4l4.42 5.84L18.9 3Zm-1.1 15.8h1.73L8.46 5.08H6.6L17.8 18.8Z"/>
+            </svg>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- NAVIGATION -->
+      <div class="footer-links">
+
+        <div class="footer-link-column">
+
+          <span>COMPANY</span>
+
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#industries">Industries</a>
+          <a href="#global">Global Hiring</a>
+
+        </div>
+
+
+        <div class="footer-link-column">
+
+          <span>WORK WITH US</span>
+
+          <a href="#process">How We Work</a>
+          <a href="#why-lotopy">Why Lotopy</a>
+          <a href="#careers">Careers</a>
+          <a href="#contact">Hire Talent</a>
+
+        </div>
+
+
+        <div class="footer-link-column">
+
+          <span>CONTACT</span>
+
+          <a href="mailto:hello@lotopy.com">
+            hello@lotopy.com
+          </a>
+
+          <a href="tel:+910000000000">
+            +91 00000 00000
+          </a>
+
+          <a href="#contact">
+            Send an enquiry
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- HUGE LOGO -->
+    <!-- <div class="footer-logo-wrap">
+      <div class="footer-huge-logo">
+        LOTOPY
+      </div>
+    </div> -->
+
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 LOTOPY. ALL RIGHTS RESERVED.
+      </span>
+
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+
+      <a href="#home" class="footer-back">
+        BACK TO TOP
+        <span>↑</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+    <!--
+        ABHI YAHAN KUCH BHI NAHI HAI.
+
+        Sirf Navbar hai.
+        Next step mein isi ke neeche Hero section add karenge.
+    -->
+
+
+    <script>
+
+        const header =
+            document.querySelector(".lotopy-header");
+
+        const menuButton =
+            document.querySelector(".lotopy-menu-btn");
+
+
+        menuButton.addEventListener("click", function () {
+
+            header.classList.toggle("menu-open");
+
+        });
+
+
+        const mobileLinks =
+            document.querySelectorAll(
+                ".lotopy-mobile-menu a"
+            );
+
+
+        mobileLinks.forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                header.classList.remove("menu-open");
+
+            });
+
+        });
+
+    </script>
 
 </body>
-
 </html>
